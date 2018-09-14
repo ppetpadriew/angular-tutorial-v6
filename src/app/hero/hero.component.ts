@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Hero} from '../model/Hero';
 
 @Component({
@@ -10,6 +10,9 @@ export class HeroComponent implements OnInit {
     @Input()
     public hero: Hero;
 
+    @Output()
+    public isClicked = new EventEmitter<boolean>();
+
     @Input('name')
     public aliasTest: string;
 
@@ -17,6 +20,10 @@ export class HeroComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    public onClick() {
+        this.isClicked.emit(true);
     }
 
 }
