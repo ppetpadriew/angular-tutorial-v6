@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Hero} from '../model/Hero';
 import {Observable, of} from 'rxjs';
+import {MessageService} from './message.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class HeroService {
 
-    public constructor() {
+    public constructor(private messageService: MessageService) {
     }
 
     public getHeroes(): Observable<Hero[]> {
@@ -20,6 +21,7 @@ export class HeroService {
         data.forEach(function (d) {
             heroes.push(new Hero(d.name, d.alterText, d.power));
         });
+        this.messageService.add('Fetching Heroes');
 
         // Basically convert any value into Observable object
         // This is use ful when we want to mock some Observable objects
@@ -33,6 +35,7 @@ export class HeroService {
         return new Observable((observer) => {
             setTimeout(() => {
                 observer.next(heroes);
+                this.messageService.add('Heroes fetched.');
             }, 2000);
         });
     }
