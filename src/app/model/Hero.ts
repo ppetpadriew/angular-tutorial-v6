@@ -1,16 +1,7 @@
+import {Input} from '@angular/core';
+
 export class Hero {
-    public constructor(private name: string, private alterText = '', private power) {
+    public constructor(@Input() public name: string, public alterText = '', public power) {
     }
 
-    public getName(): string {
-        return this.name;
-    }
-
-    public getAlterText(): string {
-        return this.alterText;
-    }
-
-    public getPower(): string {
-        return this.power;
-    }
 }

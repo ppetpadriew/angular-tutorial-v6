@@ -9,7 +9,8 @@ import {MessageService} from './services/message.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    title = 'angular-v6';
+    public title = 'Tour of Heroes';
+    public selectedHero: Hero;
 
     public heroes: Hero[];
 
@@ -21,7 +22,10 @@ export class AppComponent implements OnInit {
     }
 
     public getHeroes() {
-        this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
+        this.heroService.getHeroes().subscribe(heroes => {
+            this.heroes = heroes;
+            this.selectedHero = this.heroes[0];
+        });
     }
 
     public sayHello(click: boolean) {

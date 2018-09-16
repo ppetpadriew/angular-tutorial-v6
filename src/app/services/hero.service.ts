@@ -13,9 +13,9 @@ export class HeroService {
 
     public getHeroes(): Observable<Hero[]> {
         const data = [
-            {'name': 'Hero 1', 'alterText': '', 'power': 'test power'},
-            {'name': 'Hero 2', 'alterText': '', 'power': 'test power'},
-            {'name': 'Hero 3', 'alterText': '', 'power': 'test power'},
+            {'name': 'Batman', 'alterText': '', 'power': 'Rich'},
+            {'name': 'Superman', 'alterText': '', 'power': 'Steel Body'},
+            {'name': 'Thor', 'alterText': '', 'power': 'Roaring Thunder'},
         ];
         const heroes: Hero[] = [];
         data.forEach(function (d) {
