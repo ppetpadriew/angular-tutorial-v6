@@ -11,15 +11,12 @@ export class HeroListComponent implements OnInit {
     @Input()
     public heroes: Hero[];
 
-    @Output()
-    public listItemClicked = new EventEmitter<Hero>();
-
     constructor(public heroService: HeroService) {
     }
 
 
     public onClick(hero: Hero) {
-        this.listItemClicked.emit(hero);
+        this.heroService.selected = hero;
     }
 
     public ngOnInit() {
@@ -29,7 +26,6 @@ export class HeroListComponent implements OnInit {
     public getHeroes() {
         this.heroService.getHeroes().subscribe(heroes => {
             this.heroes = heroes;
-            this.selectedHero = this.heroes[0];
         });
     }
 }

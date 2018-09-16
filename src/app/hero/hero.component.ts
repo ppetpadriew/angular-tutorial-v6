@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Hero} from '../model/Hero';
+import {HeroService} from '../services/hero.service';
 
 @Component({
     selector: 'app-hero',
@@ -16,10 +17,11 @@ export class HeroComponent implements OnInit {
     @Input('name')
     public aliasTest: string;
 
-    constructor() {
+    constructor(private heroService: HeroService) {
     }
 
     ngOnInit() {
+        this.hero = this.heroService.selected;
     }
 
     public onClick() {

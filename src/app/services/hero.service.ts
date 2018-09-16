@@ -8,18 +8,20 @@ import {MessageService} from './message.service';
 })
 export class HeroService {
 
+    public selected: Hero;
+
     public constructor(private messageService: MessageService) {
     }
 
     public getHeroes(): Observable<Hero[]> {
         const data = [
-            {'name': 'Batman', 'alterText': '', 'power': 'Rich'},
-            {'name': 'Superman', 'alterText': '', 'power': 'Steel Body'},
-            {'name': 'Thor', 'alterText': '', 'power': 'Roaring Thunder'},
+            {'id': 1, 'name': 'Batman', 'alterText': '', 'power': 'Rich'},
+            {'id': 2, 'name': 'Superman', 'alterText': '', 'power': 'Steel Body'},
+            {'id': 3, 'name': 'Thor', 'alterText': '', 'power': 'Roaring Thunder'},
         ];
         const heroes: Hero[] = [];
         data.forEach(function (d) {
-            heroes.push(new Hero(d.name, d.alterText, d.power));
+            heroes.push(new Hero(d.id, d.name, d.alterText, d.power));
         });
         this.messageService.add('Fetching Heroes');
 
@@ -39,5 +41,4 @@ export class HeroService {
             }, 2000);
         });
     }
-
 }
