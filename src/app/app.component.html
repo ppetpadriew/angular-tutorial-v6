@@ -3,9 +3,10 @@
     <h1>
         {{title}}
     </h1>
-    <ul>
-        <li *ngFor="let hero of heroes" (click)="selectedHero = hero">{{hero.name}}</li>
-    </ul>
-    <app-hero [hero]="selectedHero" name="Turbo" (isClicked)="sayHello($event)"></app-hero>
+
+    <a class="btn btn-default" routerLink="/heroes">Heroes</a>
+    <router-outlet></router-outlet>
+    <!--<app-hero-list (listItemClicked)="setSelected($event)"></app-hero-list>-->
+    <!--<app-hero [hero]="selectedHero" name="Turbo" (isClicked)="sayHello($event)"></app-hero>-->
     <app-messages></app-messages>
 </div>

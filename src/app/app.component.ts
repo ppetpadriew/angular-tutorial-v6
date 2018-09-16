@@ -8,24 +8,13 @@ import {MessageService} from './services/message.service';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
     public title = 'Tour of Heroes';
     public selectedHero: Hero;
 
     public heroes: Hero[];
 
-    public constructor(public heroService: HeroService, private messageService: MessageService) {
-    }
-
-    public ngOnInit() {
-        this.getHeroes();
-    }
-
-    public getHeroes() {
-        this.heroService.getHeroes().subscribe(heroes => {
-            this.heroes = heroes;
-            this.selectedHero = this.heroes[0];
-        });
+    public constructor(private messageService: MessageService) {
     }
 
     public sayHello(click: boolean) {
@@ -34,5 +23,9 @@ export class AppComponent implements OnInit {
             return;
         }
         this.messageService.add('Nothing happen !!');
+    }
+
+    public setSelected(hero: Hero) {
+        this.selectedHero = hero;
     }
 }
