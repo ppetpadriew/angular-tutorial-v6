@@ -7,20 +7,23 @@ import {MessageService} from './message.service';
     providedIn: 'root'
 })
 export class HeroService {
-
+    private data = [
+        {'id': 1, 'name': 'Batman', 'alterText': '', 'power': 'Rich'},
+        {'id': 2, 'name': 'Superman', 'alterText': '', 'power': 'Steel Body'},
+        {'id': 3, 'name': 'Thor', 'alterText': '', 'power': 'Roaring Thunder'},
+    ];
+    private heroes: Hero[];
     public selected: Hero;
 
     public constructor(private messageService: MessageService) {
     }
 
     public getHeroes(): Observable<Hero[]> {
-        const data = [
-            {'id': 1, 'name': 'Batman', 'alterText': '', 'power': 'Rich'},
-            {'id': 2, 'name': 'Superman', 'alterText': '', 'power': 'Steel Body'},
-            {'id': 3, 'name': 'Thor', 'alterText': '', 'power': 'Roaring Thunder'},
-        ];
+        if (this.heroes) {
+            return of(this.heroes);
+        }
         const heroes: Hero[] = [];
-        data.forEach(function (d) {
+        this.data.forEach(function (d) {
             heroes.push(new Hero(d.id, d.name, d.alterText, d.power));
         });
         this.messageService.add('Fetching Heroes');
@@ -36,9 +39,14 @@ export class HeroService {
         // provided by Angular
         return new Observable((observer) => {
             setTimeout(() => {
-                observer.next(heroes);
+                this.heroes = heroes;
+                observer.next(this.heroes);
                 this.messageService.add('Heroes fetched.');
             }, 2000);
         });
+    }
+
+    public getHero(id: number): Observable<Hero> {
+        return of(this.data.find(hero => hero.id === id));
     }
 }

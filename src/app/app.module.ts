@@ -8,6 +8,7 @@ import {HeroComponent} from './hero/hero.component';
 import {FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
 import { HeroListComponent } from './hero-list/hero-list.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { HeroListComponent } from './hero-list/hero-list.component';
         HeroFormComponent,
         MessagesComponent,
         HeroComponent,
-        HeroListComponent
+        HeroListComponent,
+        DashboardComponent
     ],
     imports: [
         BrowserModule,
